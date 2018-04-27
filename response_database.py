@@ -2,6 +2,7 @@ import pywapi
 import datetime
 import time
 
+degree = u'\N{DEGREE SIGN}'
 datetoday = datetime.date.today()
 timetoday = datetime.datetime.today().time()
 datestr = datetoday.strftime("%d/%m/%Y")
@@ -9,18 +10,19 @@ timestr = timetoday.strftime("%H:%M")
 weather = pywapi.get_weather_from_weather_com('UKXX0037')
 
 try:
-	weatherStr = 'The weather in Colchester is ' + weather['current_conditions']['text'].lower() + ' and ' + weather['current_conditions']['temperature'] + degree + 'C'
+    weatherStr = 'The weather in Colchester is ' + weather['current_conditions']['text'].lower() + ' and ' + weather['current_conditions']['temperature'] + degree + 'C'
 except:
-	weatherStr = 'Cannot get weather data at this time. Try looking outside!'
+    weatherStr = 'Cannot get weather data at this time. Try looking outside!'
 
-logo = """\
+intro = """\
 
 ----------Welcome to PAnIC!!!!---------
 Python Artificial Intelligence Computer
 
            --v0.1 (PHALLUS)--
+"""
 
-
+logo = """\
           .?77777777777777$.            
           777..777777777777$+           
          .77    7777777777$$$           

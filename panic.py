@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*- 
 
-degree = u'\N{DEGREE SIGN}'
-
 import difflib
 import re
 import random
@@ -18,19 +16,22 @@ def phrasefilter(phrase):
 	noise_words_set = ['of', 'the', 'at', 'for', 'in', 'and', 'is', 'from', 'are', 'our', 'it', 'its', 'was', 'when', 'how', 'what', 'like', 'whats', 'now', 'panic', 'very']
 	return ' '.join(w for w in phrase.split() if w.lower() not in noise_words_set)
 
+
 def getResponse(array):
 	return random.choice(array[1:])
 
 class panicBot():
 	"""create new chatbot instance"""
 	def __init__(self):
-		print logo
 		self.prevResponse = ''
 		self.user = {
 			'name': '',
 			'age': '',
 			'location': ''
 		}
+
+	def printLogo(self):
+		return intro
 
 	def takeInput(self, message):
 		out = ''
@@ -73,7 +74,7 @@ class panicBot():
 				if vals[i] > maxVal[0]:
 					maxVal[0] = vals[i]
 					maxVal[1] = i
-			if maxVal[0] > 0.6:
+			if maxVal[0] > 0.55:
 				if maxVal[1] == 0:
 					if self.user['name'] == '':
 						self.prevResponse = Database[maxVal[1]][1] + ' What is your name?'
@@ -113,8 +114,10 @@ class panicBot():
 				self.prevResponse = random.choice(['Sorry, I don\'t understand', 'I don\'t know what you mean', 'Sorry, I don\'t get that', 'You\'ve lost me there'])
 			out += '\n' + self.prevResponse + '\n'
 		return out
-
+		
 if __name__ == "__main__":
-    bot = panicBot()
-    while True:
+	print intro
+	print logo
+	bot = panicBot()
+	while True:
 		print bot.takeInput(raw_input('> '))
